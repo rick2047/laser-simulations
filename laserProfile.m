@@ -12,7 +12,7 @@ classdef laserProfile
     end
     
     methods
-        function obj = laserProfile(param, omega, t, dt, gaussian)
+        function obj = laserProfile(param, omega,area, t, dt, gaussian)
             obj.param = param;
             obj.omega = omega;
             obj.totalTime = t;
@@ -24,7 +24,7 @@ classdef laserProfile
             else
                 obj.amplitude = 1/pi * param/(param^2+(obj.time-obj.totalTime).^2);
             end
-            obj.amplitude = pi/trapz(obj.amplitude) .* obj.amplitude .* cos(omega*(obj.time-obj.totalTime));
+            obj.amplitude = area/trapz(obj.amplitude) .* obj.amplitude .* cos(omega*(obj.time-obj.totalTime));
             obj.amplitude = obj.amplitude./obj.dt;
         end
         
