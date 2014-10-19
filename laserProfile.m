@@ -29,7 +29,7 @@ classdef laserProfile
         end
         
         function obj = plot(obj)
-            fig = figure(1);
+            fig = figure;
             plot(obj.time, obj.amplitude);
             ylabel('Amplitude');
             xlabel('Time');
