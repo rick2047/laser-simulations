@@ -41,7 +41,6 @@ classdef laserProfile
             end
             file_name = [file_name '_' num2str(obj.param) '_' num2str(obj.omega) '_matlab.png'];
             saveas(fig,file_name);
-            
         end
         
     end
