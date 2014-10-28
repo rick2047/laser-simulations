@@ -32,19 +32,25 @@ end
 detune = [-(omega0(end:-1:2)-omega) omega0-omega];
 
 [W, A] = meshgrid(detune,area);
-ce = zeros(length(area),length(detune));
 
-for w = 1:length(detune)
-    if w<length(omega0)
-        ce(:,w)=ce_list(:,length(omega0)-w);
-    else
-        ce(:,w)=ce_list(:,w+1-length(omega0));
-    end
-end
 
-[CS h] = contour(W,A,ce);
+% for w = 1:length(detune)
+%     if w<length(omega0)
+%         ce(:,w)=ce_list(:,length(omega0)-w);
+%     else
+%         ce(:,w)=ce_list(:,w+1-length(omega0));
+%     end
+% end
+
+ce = [ce_list(:,end:-1:2) ce_list ];
+
+[CS, h] = contour(W,A,ce);
 clabel(CS,h,'FontSize',10);
 grid on;
 xlabel('Detuning');
 ylabel('Intensity');
 title('Excited state population evolution');
+dirname = [num2str(param) '_' num2str(omega)];
+mkdir(dirname);
+cd(dirname);
+saveas(h,'new_test.jpg')
