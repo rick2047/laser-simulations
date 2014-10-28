@@ -1,4 +1,4 @@
-classdef laserProfile
+classdef laserProfile <handle
 %     Defines a laser object
     
     properties
